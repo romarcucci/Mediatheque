@@ -1,1 +1,4 @@
-CategorieClient: public void modifierCotisation(double cot); cotisation mise à 4 au lieu de prendre la valeur reçue en parametre.
+HashClient: 
+ -> pas d'erreurs.
+CategorieClient: 
+ -> public void modifierCotisation(double cot); cotisation mise à 4 au lieu de prendre la valeur reçue en parametre.

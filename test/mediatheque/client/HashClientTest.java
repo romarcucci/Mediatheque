@@ -7,7 +7,7 @@ import org.junit.Test;
 public class HashClientTest {
 
 	@Test
-	public void setup() {
+	public void constructor() {
 		HashClient hc = new HashClient("marcucci", "romain");
 		assertTrue(hc.getPrenom().equals("romain"));
 		assertTrue(hc.getNom().equals("marcucci"));

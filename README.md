@@ -1,0 +1,1 @@
+CategorieClient: public void modifierCotisation(double cot); cotisation mise à 4 au lieu de prendre la valeur reçue en parametre.

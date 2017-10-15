@@ -165,7 +165,7 @@ public class Client implements Serializable {
         }
 
         /**
-         * getNbEmpruntsEnCours 
+         * getNbEmpruntsEnCours
          * @return le nombre d'emprunts en cours
          */
         public int getNbEmpruntsEnCours() {
@@ -226,7 +226,7 @@ public class Client implements Serializable {
         }
 
         /**
-         * Rewrite hashCode this will be never used because we hash the key and not the value 
+         * Rewrite hashCode this will be never used because we hash the key and not the value
          * @return int to facilitate hash
          */
         @Override
@@ -410,7 +410,7 @@ public class Client implements Serializable {
          *    @return nombre d'emprunts maximal
          */
         public int nbMaxEmprunt() {
-                return catClient.getNbEmpruntMax(); 
+                return catClient.getNbEmpruntMax();
         }
 
         /**

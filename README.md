@@ -1,4 +1,6 @@
 HashClient: 
  -> pas d'erreurs.
 CategorieClient: 
- -> public void modifierCotisation(double cot); cotisation mise à 4 au lieu de prendre la valeur reçue en parametre.
+ -> public void modifierCotisation(double cot); cotisation mise ï¿½ 4 au lieu de prendre la valeur reï¿½ue en parametre.
+ Localisation:
+ -> retourne le mauvais hashcode?

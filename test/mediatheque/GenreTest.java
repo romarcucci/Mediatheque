@@ -37,7 +37,7 @@ public class GenreTest {
 	public void afficherstatTest () {
 		g = new Genre("Thriller");
 		g.emprunter();
-		g.afficherStatistiques(); // ?? 
+		g.afficherStatistiques(); // ??
 	}
 
 }

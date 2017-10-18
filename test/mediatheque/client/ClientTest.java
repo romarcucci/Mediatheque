@@ -148,6 +148,76 @@ public class ClientTest {
 		c.marquer();
 	}
 
+//	@Test
+//	public void restituerFiche(){
+//		CategorieClient cc = new CategorieClient("marcucci");
+//		Client c = new Client("marcucci", "romain", "paris", cc);
+//		int empruntsEffectues = c.getNbEmpruntsEffectues();
+//		c.getCategorie().modifierMax(10);
+//		Mediatheque m = new Mediatheque("mediatheque");
+//		Localisation l = new Localisation("A", "05");
+//		Genre g = new Genre("genre");
+//		Audio a = new Audio("code", l, "audio_doc", "auteur", "2017", g, "classification");
+//		FicheEmprunt fiche = new FicheEmprunt(m, c, a);
+//		c.emprunter(fiche);
+//		c.restituer(fiche);
+//		assertTrue(c.getNbEmpruntsEnCours() == empruntsEnCours - 1);
+//	}
+//
+//	@Test(expected = OperationImpossible)
+//	public void restituerFicheFail(){
+//		CategorieClient cc = new CategorieClient("marcucci");
+//		Client c = new Client("marcucci", "romain", "paris", cc);
+//		int empruntsEffectues = c.getNbEmpruntsEffectues();
+//		c.getCategorie().modifierMax(10);
+//		Mediatheque m = new Mediatheque("mediatheque");
+//		Localisation l = new Localisation("A", "05");
+//		Genre g = new Genre("genre");
+//		Audio a = new Audio("code", l, "audio_doc", "auteur", "2017", g, "classification");
+//		FicheEmprunt fiche = new FicheEmprunt(m, c, a);
+//		c.emprunter(fiche);
+//		Mediatheque m1 = new Mediatheque("error");
+//		FicheEmprunt fiche = new FicheEmprunt(m1, c, a);
+//		c.restituer(fiche);
+//		assertTrue(c.getNbEmpruntsEnCours() == empruntsEnCours - 1);
+//	}
+
+	@Test
+	public void restituerBool() throws OperationImpossible{
+		CategorieClient cc = new CategorieClient("marcucci");
+		Client c = new Client("marcucci", "romain", "paris", cc);
+		c.getCategorie().modifierMax(10);
+		c.emprunter();
+		c.restituer(false);
+		assertTrue(c.getNbEmpruntsEnCours() == 0);
+	}
+
+//	@Test
+//	public void restituerBoolRetard() throws OperationImpossible{
+//		CategorieClient cc = new CategorieClient("marcucci");
+//		Client c = new Client("marcucci", "romain", "paris", cc);
+//		c.getCategorie().modifierMax(10);
+//		c.emprunter();
+//		c.restituer(true);
+//		assertTrue(c.getNbEmpruntsEnCours() == 0);
+//		assertTrue(c.getNbEmpruntsEnRetard() == 0);
+//	}
+
+	@Test(expected = OperationImpossible.class)
+	public void restituerBoolFail() throws OperationImpossible{
+		CategorieClient cc = new CategorieClient("marcucci");
+		Client c = new Client("marcucci", "romain", "paris", cc);
+		c.restituer(false);
+	}
+
+	@Test(expected = OperationImpossible.class)
+	public void restituerBoolRetardFail() throws OperationImpossible{
+		CategorieClient cc = new CategorieClient("marcucci");
+		Client c = new Client("marcucci", "romain", "paris", cc);
+		c.getCategorie().modifierMax(10);
+		c.emprunter();
+		c.restituer(true);
+	}
 }
 
 

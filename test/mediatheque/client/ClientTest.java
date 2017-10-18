@@ -1,21 +1,14 @@
 package mediatheque.client;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import java.util.Vector;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.junit.Test;
 
-import com.sun.xml.internal.txw2.Document;
-
-import mediatheque.FicheEmprunt;
-import mediatheque.Genre;
-import mediatheque.Localisation;
-import mediatheque.Mediatheque;
 import mediatheque.OperationImpossible;
-import mediatheque.document.Audio;
-import util.Datutil;
-import util.InvariantBroken;
 
 public class ClientTest {
 
@@ -218,6 +211,33 @@ public class ClientTest {
 		c.emprunter();
 		c.restituer(true);
 	}
+
+	@Test
+	public void metAJourEmprunts(){
+		//TODO
+	}
+
+	@Test
+	public void dateRetour() throws OperationImpossible{
+		CategorieClient cc = new CategorieClient("marcucci", 1, 1, 3, 10, false);
+		Client c = new Client("marcucci", "romain", "paris", cc);
+		System.out.println(c.dateRetour(new Date(), 10));
+		System.out.println(addDays(new Date(), 20));
+		assertEquals(addDays(new Date(), 20), c.dateRetour(new Date(), 10));
+	}
+
+	public static Date addDays(Date date, int days)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return cal.getTime();
+    }
+
+	@Test
+	public void sommeDue() throws OperationImpossible{
+		CategorieClient cc = new CategorieClient("marcucci", 1, 1, 1, 10, false);
+		Client c = new Client("marcucci", "romain", "paris", cc);
+		assertTrue(c.sommeDue(10) == (10*cc.getCoefTarif()));
+	}
 }
-
-

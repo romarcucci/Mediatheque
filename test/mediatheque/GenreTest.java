@@ -5,39 +5,29 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class GenreTest {
-	
-	Genre g, g1, g2;
-	
+
+	Genre g = null;
+
 	@Test
 	public void constructeurTest() {
 		g = new Genre("Horror");
-		g1 = new Genre ("Documentary");
 		assertTrue(g.getNom().equals("Horror"));
-		assertTrue(g1.getNom().equals("Documentary"));
+		assertTrue(g.getNbEmprunts() == 0);
 	}
-	
+
 	@Test
 	public void emprunterTest() {
 		g = new Genre("KPOP");
-		g2 = new Genre("Hip Hop");
+		int nb = g.getNbEmprunts();
 		g.emprunter();
-		g2.emprunter();
-		g2.emprunter();
-		assertEquals(g.getNbEmprunts(),12);
-		assertEquals(g2.getNbEmprunts(),14);
+		assertTrue(g.getNbEmprunts() == nb + 1);
 	}
-	
+
 	@Test
 	public void modifierTest() {
 		g = new Genre("Animation");
+		assertTrue(g.getNom().equals("Animation"));
 		g.modifier("Anime");
-		assertTrue(g.getNom().equals("Anime"));	
+		assertTrue(g.getNom().equals("Anime"));
 	}
-	
-	public void afficherstatTest () {
-		g = new Genre("Thriller");
-		g.emprunter();
-		g.afficherStatistiques(); // ??
-	}
-
 }

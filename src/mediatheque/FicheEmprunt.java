@@ -71,7 +71,7 @@ public class FicheEmprunt implements Serializable {
         }
 
         /**
-         * <TT>verifier</TT> teste si une lettre a ete deja envoyee. 
+         * <TT>verifier</TT> teste si une lettre a ete deja envoyee.
          * Dans ce cas, on relance un rappel
          * sinon on teste si la date est maintenant depassee,
          * si oui on envoie un premier rappel
@@ -88,7 +88,7 @@ public class FicheEmprunt implements Serializable {
         }
 
         /**
-         * <TT>premierRappel</TT> 
+         * <TT>premierRappel</TT>
          * Le client est marque ; la lettre de rappel est envoyee
          */
         private void premierRappel() throws OperationImpossible {
@@ -115,7 +115,7 @@ public class FicheEmprunt implements Serializable {
         /**
          * modifie le client associe a l'emprunt pour permettre les modifications
          * de nom et prenom dans la hashtable
-         * @param newClient 
+         * @param newClient
          */
         void modifierClient(Client newClient) {
                 client = newClient;
@@ -165,14 +165,14 @@ public class FicheEmprunt implements Serializable {
                 return (int) ((dateLimite.getTime () - dateEmprunt.getTime ()) / (1000 * 60 * 60 * 24));
         }
 
-        public double getTarifEmprunt(){ 
+        public double getTarifEmprunt(){
                 double tarifNominal = document.tarifEmprunt();
                 return  client.sommeDue(tarifNominal);
         }
 
         /**
-         * changementCategorie est appele apres un changement de categorie du client 
-         * calcule si l'emprunt est en retard ou non 
+         * changementCategorie est appele apres un changement de categorie du client
+         * calcule si l'emprunt est en retard ou non
          * @return boolean true si l'emprunt etait depasse
          */
         public boolean changementCategorie() throws OperationImpossible {

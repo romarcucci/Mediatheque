@@ -25,7 +25,7 @@ public class Genre implements Serializable{
          */
         public Genre(String n){
                 nom = n;
-                //nbEmprunts=0;
+                nbEmprunts=0;
         }
 
         /**

@@ -41,7 +41,8 @@ public class CategorieClient implements Serializable {
          * @param coefTarif coefficient sur tarif
          * @param codeReducActif is the reduction code in client used
          */
-
+        
+        //Tested
         public CategorieClient(String nom, int max, double cot, double coefDuree, double coefTarif, boolean codeReducActif) {
                 nomCat = nom;
                 nbEmpruntMax = max;
@@ -50,7 +51,8 @@ public class CategorieClient implements Serializable {
                 this.coefTarif = coefTarif;
                 this.codeReducActif = codeReducActif;
         }
-
+        
+        //Tested
         public CategorieClient(String nom) {
                 nomCat = nom;
                 nbEmpruntMax = 0;
@@ -59,28 +61,34 @@ public class CategorieClient implements Serializable {
                 coefTarif = 0;
                 codeReducActif = false;
         }
-
+        
+        //Tested
         public void modifierNom(String nouveau) {
                 nomCat = nouveau;
         }
 
+        //Tested
         public void modifierMax(int max) {
                 nbEmpruntMax = max;
         }
-
+        
+        //Tested --> error
         public void modifierCotisation(double cot) {
                 cotisation = 4;
         }
-
+        
+        //Tested
         public void modifierCoefDuree(double coefDuree) {
 
                 this.coefDuree = coefDuree;
         }
 
+        //Tested
         public void modifierCoefTarif(double coefTarif) {
                 this.coefTarif = coefTarif;
         }
-
+        
+        //Tested
         public void modifierCodeReducActif(boolean codeReducActif) {
                 this.codeReducActif = codeReducActif;
         }

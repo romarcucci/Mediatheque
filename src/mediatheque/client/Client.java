@@ -86,6 +86,8 @@ public class Client implements Serializable {
 	 * @param catClient
 	 *            Categorie du client
 	 */
+	
+	//Tested
 	public Client(String nom, String prenom, String adresse, CategorieClient catClient) throws OperationImpossible {
 		initAttr(nom, prenom, adresse, catClient);
 		if (catClient.getCodeReducUtilise()) {

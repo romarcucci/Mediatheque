@@ -6,35 +6,34 @@ import org.junit.Test;
 
 public class DocumentTest {
 
-	Document doc = null;
-
 	@Test
-	public void contructeur() {
-
+	public void testDocument() {
+		fail("Not yet implemented");
 	}
 
 	@Test
-	public void metEmpruntable() {
-
+	public void testMetEmpruntable() {
+		fail("Not yet implemented");
 	}
 
 	@Test
-	public void metConsultable() {
-
+	public void testMetConsultable() {
+		fail("Not yet implemented");
 	}
 
 	@Test
-	public void emprunter() {
-
+	public void testEmprunter() {
+		fail("Not yet implemented");
 	}
 
 	@Test
-	public void restituer() {
-
+	public void testRestituer() {
+		fail("Not yet implemented");
 	}
 
 	@Test
-	public void invariant() {
-
+	public void testInvariant() {
+		fail("Not yet implemented");
 	}
+
 }

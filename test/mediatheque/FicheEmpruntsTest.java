@@ -26,42 +26,42 @@ public class FicheEmpruntsTest {
 	}
 
 	@Test
-	public void constructeur() {
+	public void testConstructeur() {
 		assertTrue(fiche.getDateEmprunt() == Datutil.dateDuJour());
 	}
 
 	@Test
-	public void verifier() {
+	public void testVerifier() {
 
 	}
 
 	@Test
-	public void premierRappel() {
+	public void testPremierRappel() {
 
 	}
 
 	@Test
-	public void relancher() {
+	public void testRelancer() {
 
 	}
 
 	@Test
-	public void modifierClient() {
+	public void testModifierClient() {
 
 	}
 
 	@Test
-	public void correspond() {
+	public void testCorrespond() {
 
 	}
 
 	@Test
-	public void restituer() {
+	public void testRestituer() {
 
 	}
 
 	@Test
-	public void changementCategorie() {
+	public void testChangementCategorie() {
 
 	}
 }

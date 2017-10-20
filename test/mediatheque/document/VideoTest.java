@@ -21,17 +21,17 @@ public class VideoTest {
 	}
 
 	@Test
-	public void constructeur() {
+	public void testConstructeur() {
 
 	}
 
 	@Test
-	public void emprunter() {
+	public void testEmprunter() {
 
 	}
 
 	@Test
-	public void invariantVideo() {
+	public void testInvariantVideo() {
 
 	}
 }

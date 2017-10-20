@@ -1,11 +1,24 @@
 package mediatheque;
 
-import java.io.*;
-import java.util.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Vector;
 
-import mediatheque.client.*;
-import mediatheque.document.*;
-import util.*;
+import mediatheque.client.CategorieClient;
+import mediatheque.client.Client;
+import mediatheque.client.HashClient;
+import mediatheque.document.Document;
+import util.Datutil;
+import util.InvariantBroken;
 
 /**
  * La classe <code>Mediatheque</code> gere l'interface du systeme de gestion de

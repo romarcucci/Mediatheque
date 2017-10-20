@@ -27,12 +27,12 @@ public class LettreRappelTest {
 	}
 
 	@Test
-	public void constructeur() {
+	public void testConstructeur() {
 		assertTrue(lettre != null);
 	}
 
 	@Test
-	public void relancer() {
+	public void testRelancer() {
 		lettre.relancer();
 		assertTrue(lettre.getDateRappel() == Datutil.dateDuJour());
 	}

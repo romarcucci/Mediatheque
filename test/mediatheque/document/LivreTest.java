@@ -21,12 +21,12 @@ public class LivreTest {
 	}
 
 	@Test
-	public void constructeur() {
+	public void testConstructeur() {
 
 	}
 
 	@Test
-	public void constructeurFail() {
+	public void testConstructeurFail() {
 
 	}
 

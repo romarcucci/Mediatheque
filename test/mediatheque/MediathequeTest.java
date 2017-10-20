@@ -1,198 +1,196 @@
 package mediatheque;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class MediathequeTest {
 
 	@Test
-	public void constructeur() {
+	public void testConstructeur() {
 
 	}
 
 	@Test
-	public void empty() {
+	public void testEmpty() {
 
 	}
 
 	@Test
-	public void chercherGenre() {
+	public void testChercherGenre() {
 
 	}
 
 	@Test
-	public void supprimerGenre() {
+	public void testSupprimerGenre() {
 
 	}
 
 	@Test
-	public void ajouterGenre() {
+	public void testAjouterGenre() {
 
 	}
 
 	@Test
-	public void modifierGenre() {
+	public void testModifierGenre() {
 
 	}
 
 	@Test
-	public void listerGenre() {
+	public void testListerGenre() {
 
 	}
 
 	@Test
-	public void supprimerLocalisation() {
+	public void testSupprimerLocalisation() {
 
 	}
 
 	@Test
-	public void chercherLocalisation() {
+	public void testChercherLocalisation() {
 
 	}
 
 	@Test
-	public void ajouterLocalisation() {
+	public void testAjouterLocalisation() {
 
 	}
 
 	@Test
-	public void modifierLocalisation() {
+	public void testModifierLocalisation() {
 
 	}
 
 	@Test
-	public void listerLocalisation() {
+	public void testListerLocalisation() {
 
 	}
 
 	@Test
-	public void chercherCatClient() {
+	public void testChercherCatClient() {
 
 	}
 
 	@Test
-	public void supprimerCatClient() {
+	public void testSupprimerCatClient() {
 
 	}
 
 	@Test
-	public void ajouterCatClient() {
+	public void testAjouterCatClient() {
 
 	}
 	@Test
-	public void modifierCatClient() {
-
-	}
-
-	@Test
-	public void listerCatClient() {
+	public void testModifierCatClient() {
 
 	}
 
 	@Test
-	public void chercherDocument() {
+	public void testListerCatClient() {
 
 	}
 
 	@Test
-	public void ajouterDocument() {
+	public void testChercherDocument() {
+
+	}
+
+	@Test
+	public void testAjouterDocument() {
 
 	}
 
 
 	@Test
-	public void retirerDocument() {
+	public void testRetirerDocument() {
 
 	}
 
 	@Test
-	public void metEmpruntable() {
+	public void testMetEmpruntable() {
 
 	}
 
 	@Test
-	public void metConsultable() {
+	public void testMetConsultable() {
 
 	}
 
 	@Test
-	public void listerDocuments() {
+	public void testListerDocuments() {
 
 	}
 
 	@Test
-	public void existeDocument() {
+	public void testExisteDocument() {
 
 	}
 
 	@Test
-	public void emprunter() {
+	public void testEmprunter() {
 
 	}
 
 	@Test
-	public void restituer() {
+	public void testRestituer() {
 
 	}
 
 	@Test
-	public void verifier() {
+	public void testVerifier() {
 
 	}
 
 	@Test
-	public void listerFicheEmprunts() {
+	public void testListerFicheEmprunts() {
 
 	}
 
 	@Test
-	public void inscrire() {
+	public void testInscrire() {
 
 	}
 
 	@Test
-	public void resilier() {
+	public void testResilier() {
 
 	}
 
 	@Test
-	public void modifierCient() {
+	public void testModifierCient() {
 
 	}
 
 	@Test
-	public void changerCategorie() {
+	public void testChangerCategorie() {
 
 	}
 
 	@Test
-	public void changerCOdeReduction() {
+	public void testChangerCOdeReduction() {
 
 	}
 
 	@Test
-	public void chercherClient() {
+	public void testChercherClient() {
 
 	}
 
 	@Test
-	public void listerClients() {
+	public void testListerClients() {
 
 	}
 
 	@Test
-	public void existeClient() {
+	public void testExisteClient() {
 
 	}
 
 	@Test
-	public void initFromFile() {
+	public void testInitFromFile() {
 
 	}
 
 	@Test
-	public void saveToFile() {
+	public void testSaveToFile() {
 
 	}
 

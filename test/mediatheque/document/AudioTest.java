@@ -23,17 +23,17 @@ public class AudioTest {
 	}
 
 	@Test
-	public void constructeur() {
+	public void testConstructeur() {
 		assertTrue(audio != null);
 	}
 
 	@Test(expected = OperationImpossible.class)
-	public void constructeurFail() throws OperationImpossible, InvariantBroken {
+	public void testConstructeurFail() throws OperationImpossible, InvariantBroken {
         audio = new Audio("01", new Localisation("salle", "rayon"), "titre", "auteur", "2017", new Genre("genre"), null);
 	}
 
 	@Test
-	public void emprunter() throws InvariantBroken, OperationImpossible {
+	public void testEmprunter() throws InvariantBroken, OperationImpossible {
 		int nb = audio.getNbEmprunts();
 		assertTrue(audio.emprunter());
 		assertTrue(nb + 1 == audio.getNbEmprunts());

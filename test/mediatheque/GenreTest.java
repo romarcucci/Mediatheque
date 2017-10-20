@@ -9,14 +9,14 @@ public class GenreTest {
 	Genre g = null;
 
 	@Test
-	public void constructeurTest() {
+	public void testConstructeur() {
 		g = new Genre("Horror");
 		assertTrue(g.getNom().equals("Horror"));
 		assertTrue(g.getNbEmprunts() == 0);
 	}
 
 	@Test
-	public void emprunterTest() {
+	public void testEmprunter() {
 		g = new Genre("KPOP");
 		int nb = g.getNbEmprunts();
 		g.emprunter();
@@ -24,11 +24,11 @@ public class GenreTest {
 	}
 
 	@Test
-	public void modifierTest() {
+	public void testModifier() {
 		g = new Genre("Animation");
 		assertTrue(g.getNom().equals("Animation"));
 		g.modifier("Anime");
 		assertTrue(g.getNom().equals("Anime"));
 	}
-	
+
 }

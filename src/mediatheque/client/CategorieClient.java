@@ -69,7 +69,7 @@ public class CategorieClient implements Serializable {
         }
         
         public void modifierCotisation(double cot) {
-                cotisation = 4; //ERROR --> shoud return the parameter
+                cotisation = 4; //ERROR --> should return the parameter
         }
         
         public void modifierCoefDuree(double coefDuree) {

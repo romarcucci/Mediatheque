@@ -8,3 +8,5 @@ Mediatheque:
 -> 2 fois getRayon et pas getSalle
 
 Docuement: metEmpruntable est false au lieu de true
+
+GetNbEmprunt en retard retourne 1

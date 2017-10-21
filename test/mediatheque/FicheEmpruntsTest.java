@@ -1,6 +1,6 @@
 package mediatheque;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,21 +13,26 @@ import util.InvariantBroken;
 
 public class FicheEmpruntsTest {
 
-	FicheEmprunt fiche = null;
+	FicheEmprunt f = null;
 
 	@Before
-	public void setup() throws OperationImpossible, InvariantBroken {
-		Mediatheque m = new Mediatheque("mediatheque");
-		Client c = new Client("marcucci", "romain");
-		Localisation l = new Localisation("A", "05");
-		Genre g = new Genre("genre");
-		Document d = new Audio("code", l, "audio_doc", "auteur", "2017", g, "classification");
-		fiche = new FicheEmprunt(m, c, d);
+	public void setUp() throws OperationImpossible, InvariantBroken {
+		Mediatheque m = new Mediatheque("Mediatheque");
+		Client c = new Client("Nom", "Prenom");
+		Localisation l = new Localisation("Salle", "Rayon");
+		Genre g = new Genre("Genre");
+		Document d = new Audio("01", l, "Titre", "Auteur", "2017", g, "Classification");
+		d.metEmpruntable();
+		d.emprunter();
+		assertEquals(false,c.peutEmprunter());
+		c.emprunter();
+		System.out.println(c.getNbEmpruntsEnCours());
+		f = new FicheEmprunt(m, c, d);		
 	}
 
 	@Test
 	public void testConstructeur() {
-		assertTrue(fiche.getDateEmprunt() == Datutil.dateDuJour());
+		assertTrue(f.getDateEmprunt() == Datutil.dateDuJour());
 	}
 
 	@Test

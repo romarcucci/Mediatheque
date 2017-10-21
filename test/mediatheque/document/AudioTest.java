@@ -19,29 +19,41 @@ public class AudioTest {
 		Localisation l = new Localisation("Salle", "Rayon");
         Genre g = new Genre("Genre");
         a = new Audio("01", l, "Titre", "Auteur", "2017", g, "Classification");
-        //a.metEmpruntable();
 	}
 
 	@Test
 	public void testConstructeur() {
 		assertNotNull(a);
+		assertTrue(a.getCode().equals("01"));
+		assertEquals(new Localisation("Salle", "Rayon"), a.getLocalisation());
 		assertTrue(a.getTitre().equals("Titre"));
 		assertTrue(a.getAuteur().equals("Auteur"));
 		assertTrue(a.getAnnee().equals("2017"));
+		assertEquals(new Genre("Genre"), a.getGenre());
 		assertTrue(a.getClassification().equals("Classification")); 	
-		assertEquals(false,a.estEmpruntable());
 	}
 
 	@Test(expected = OperationImpossible.class)
 	public void testConstructeurFail() throws OperationImpossible, InvariantBroken {
-        a = new Audio("01", new Localisation("salle", "rayon"), "titre", "auteur", "2017", new Genre("genre"), null);
+        a = new Audio("01", new Localisation("Salle", "Rayon"), "Titre", "Auteur", "2017", new Genre("Genre"), null);
 	}
 
 	@Test
-	public void testEmprunter() throws InvariantBroken, OperationImpossible {
-		int nb = a.getNbEmprunts();
-		assertTrue(a.emprunter());
-		assertTrue(nb + 1 == a.getNbEmprunts());
-		
+	public void testEmpruntable() throws InvariantBroken, OperationImpossible {
+		a.metEmpruntable();
+		assertEquals(true,a.estEmpruntable());
+		//assertEquals(ans,val);
 	}
+	
+	@Test
+	public void testNonEmpruntableFail() throws InvariantBroken, OperationImpossible {
+
+		//assertEquals(true,a.metConsultable());
+		assertEquals(false,a.estEmpruntable());
+		assertEquals(false,a.estEmprunte());
+	}
+	
+
+	
+
 }

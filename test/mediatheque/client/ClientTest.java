@@ -3,6 +3,7 @@ package mediatheque.client;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.lang.reflect.Method;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -18,68 +19,62 @@ public class ClientTest {
 
 	@Before
 	public void setup() throws OperationImpossible {
-		//nom, max, cot, coefduree, coefftarif
-		cc = new CategorieClient("Subscriber", 1, 1, 3, 10, false);
-		c = new Client("marcucci", "romain", "paris", cc);
-		c.getCategorie().modifierMax(0);
+		cc = new CategorieClient("Categorie", 0, 0, 0, 0, false);
+		c = new Client("Nom", "Prenom", "Adresse", cc);
+		//c.getCategorie().modifierMax(0);
 	}
 
 	@Test
-	public void nameConstructor() {
-		Client client = new Client("marcucci", "romain");
-		assertTrue(client.getNom().equals("marcucci"));
-		assertTrue(client.getPrenom().equals("romain"));
+	public void nomConstructeurTest() {
+		Client client = new Client("Nom", "Prenom");
+		assertTrue(client.getNom().equals("Nom"));
+		assertTrue(client.getPrenom().equals("Prenom"));
 	}
 
 	@Test
-	public void catConstructor() throws OperationImpossible {
-		CategorieClient clientCat = new CategorieClient("marcucci");
-		Client client = new Client("marcucci", "romain", "paris", clientCat);
-		assertTrue(client.getNom().equals("marcucci"));
-		assertTrue(client.getPrenom().equals("romain"));
-		assertTrue(client.getAdresse().equals("paris"));
-		assertTrue(client.getCategorie() == clientCat);
+	public void constructeurTest() throws OperationImpossible {
+		Client client = new Client("Nom", "Prenom", "Adresse", cc);
+		assertTrue(client.getNom().equals("Nom"));
+		assertTrue(client.getPrenom().equals("Prenom"));
+		assertTrue(client.getAdresse().equals("Adresse"));
+		assertEquals(cc,client.getCategorie());
 	}
 
 	@Test(expected = OperationImpossible.class)
-	public void catConstructorFail() throws OperationImpossible {
-		CategorieClient clientCat = new CategorieClient("marcucci");
-		clientCat.modifierCodeReducActif(true);
-		Client client = new Client("marcucci", "romain", "paris", clientCat);
+	public void constructeurTestFail() throws OperationImpossible {
+		cc.modifierCodeReducActif(true);
+		Client client = new Client("Nom", "Prenom", "Adresse", cc);
 	}
 
 	@Test
-	public void codeConstructor() throws OperationImpossible {
-		CategorieClient clientCat = new CategorieClient("marcucci");
-		clientCat.modifierCodeReducActif(true);
-		Client client = new Client("marcucci", "romain", "paris", clientCat, 0);
-		assertTrue(client.getNom().equals("marcucci"));
-		assertTrue(client.getPrenom().equals("romain"));
-		assertTrue(client.getAdresse().equals("paris"));
-		assertTrue(client.getCategorie() == clientCat);
-		assertTrue(client.getReduc() == 0);
-
+	public void codeConstructeurTest() throws OperationImpossible {
+		cc.modifierCodeReducActif(true);
+		Client client = new Client("Nom", "Prenom", "Adresse", cc, 0);
+		assertTrue(client.getNom().equals("Nom"));
+		assertTrue(client.getPrenom().equals("Prenom"));
+		assertTrue(client.getAdresse().equals("Adresse"));
+		assertEquals(cc,client.getCategorie());
+		assertEquals(0,client.getReduc());
 	}
 
 	@Test(expected = OperationImpossible.class)
-	public void codeConstructorFail() throws OperationImpossible {
-		CategorieClient clientCat = new CategorieClient("marcucci");
-		Client client = new Client("marcucci", "romain", "paris", clientCat, 0);
+	public void codeConstructeurFail() throws OperationImpossible {
+		Client client = new Client("Nom", "Prenom", "Adresse", cc, 0);
 	}
 
-	// @Test
-	// public void initAttr(){
-	// // TO DO
-	// }
+	@Test
+	public void initAttrTest(){ // --> private ???
+		
+	}
 
 	@Test
 	public void pasEmpruntsEnCours() {
-		assertTrue(!c.aDesEmpruntsEnCours());
+		assertEquals(false, c.aDesEmpruntsEnCours());
 	}
 
 	@Test
 	public void empruntsEnCours() throws OperationImpossible {
-		assertTrue(!c.aDesEmpruntsEnCours());
+		assertEquals(false,c.aDesEmpruntsEnCours());
 		c.getCategorie().modifierMax(1);
 		c.emprunter();
 		assertTrue(c.aDesEmpruntsEnCours());
@@ -94,8 +89,7 @@ public class ClientTest {
 
 	@Test
 	public void nePeutEmprunter() throws OperationImpossible {
-
-		assertTrue(!c.peutEmprunter());
+		assertEquals(false,c.peutEmprunter());
 	}
 
 	@Test
@@ -104,8 +98,8 @@ public class ClientTest {
 		int empruntsEnCours = c.getNbEmpruntsEnCours();
 		c.getCategorie().modifierMax(10);
 		c.emprunter();
-		assertTrue(c.getNbEmpruntsEffectues() == empruntsEffectues + 1);
-		assertTrue(c.getNbEmpruntsEnCours() == empruntsEnCours + 1);
+		assertEquals(empruntsEffectues + 1, c.getNbEmpruntsEffectues());
+		assertEquals(empruntsEnCours + 1, c.getNbEmpruntsEnCours());
 	}
 
 	// @Test
@@ -130,7 +124,7 @@ public class ClientTest {
 		int nbRetard = c.getNbEmpruntsEnRetard();
 		c.emprunter();
 		c.marquer();
-		assertTrue(c.getNbEmpruntsEnRetard() == nbRetard + 1);
+		assertEquals(nbRetard + 1,c.getNbEmpruntsEnRetard());
 	}
 
 	@Test(expected = OperationImpossible.class)

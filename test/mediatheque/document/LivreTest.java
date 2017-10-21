@@ -17,15 +17,20 @@ public class LivreTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		Localisation l = new Localisation("salle", "rayon");
-		Genre g = new Genre("genre");
-
-		livre = new Livre("01", l, "titre", "auteur", "2017", g, 200);
+		Localisation l = new Localisation("Salle", "Rayon");
+		Genre g = new Genre("Genre");
+		livre = new Livre("01", l, "Titre", "Auteur", "2017", g, 200);
 	}
 
 	@Test
 	public void testConstructeur() {
-
+		assertTrue(livre.getCode().equals("01"));
+		assertEquals(new Localisation("Salle","Rayon"), livre.getLocalisation());
+		assertTrue(livre.getTitre().equals("Titre"));
+		assertTrue(livre.getAuteur().equals("Auteur"));
+		assertTrue(livre.getAnnee().equals("2017"));
+		assertEquals(new Genre("Genre"), livre.getGenre());
+		
 	}
 
 	@Test

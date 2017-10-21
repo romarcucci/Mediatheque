@@ -10,3 +10,5 @@ Mediatheque:
 Docuement: metEmpruntable est false au lieu de true
 
 GetNbEmprunt en retard retourne 1
+
+pas de délimiteurs pour catégories

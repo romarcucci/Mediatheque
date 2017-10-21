@@ -13,7 +13,7 @@ public class CategorieClient implements Serializable {
         /**
          * Nombre d'emprunts maximal tarif normal
          */
-        private int nbEmpruntMax;
+        private int nbEmpruntMax; 
 
         /**
          * Cotisation annuelle 
@@ -69,7 +69,7 @@ public class CategorieClient implements Serializable {
         }
         
         public void modifierCotisation(double cot) {
-                cotisation = 4; //ERROR --> should return the parameter
+                cotisation = 4; //ERROR --> should return the parameter (and not 4)
         }
         
         public void modifierCoefDuree(double coefDuree) {

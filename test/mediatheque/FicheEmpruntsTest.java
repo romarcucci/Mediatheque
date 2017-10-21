@@ -18,6 +18,7 @@ public class FicheEmpruntsTest {
 	@Before
 	public void setUp() throws OperationImpossible, InvariantBroken {
 		Mediatheque m = new Mediatheque("Mediatheque");
+		m.saveToFile();
 		Client c = new Client("Nom", "Prenom");
 		Localisation l = new Localisation("Salle", "Rayon");
 		Genre g = new Genre("Genre");

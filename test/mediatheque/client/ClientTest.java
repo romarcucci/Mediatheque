@@ -18,7 +18,8 @@ public class ClientTest {
 
 	@Before
 	public void setup() throws OperationImpossible {
-		cc = new CategorieClient("marcucci", 1, 1, 3, 10, false);
+		//nom, max, cot, coefduree, coefftarif
+		cc = new CategorieClient("Subscriber", 1, 1, 3, 10, false);
 		c = new Client("marcucci", "romain", "paris", cc);
 		c.getCategorie().modifierMax(0);
 	}

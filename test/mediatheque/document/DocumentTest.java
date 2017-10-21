@@ -113,5 +113,4 @@ public class DocumentTest {
 		d.metEmpruntable();
 		d.invariant();
 	}
-
 }

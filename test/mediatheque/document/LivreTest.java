@@ -24,6 +24,7 @@ public class LivreTest {
 
 	@Test
 	public void testConstructeur() {
+		assertNotNull(livre);
 		assertTrue(livre.getCode().equals("01"));
 		assertEquals(new Localisation("Salle","Rayon"), livre.getLocalisation());
 		assertTrue(livre.getTitre().equals("Titre"));
@@ -39,28 +40,13 @@ public class LivreTest {
 	}
 
 	@Test
-	public void testEmprunter() {
-
-	}
-
-	@Test
-	public void testLivre() {
-
-	}
-
-	@Test
-	public void testDureeEmprunt() {
-
-	}
-
-	@Test
-	public void testTarifEmprunt() {
-
-	}
-
-	@Test
 	public void testInvariantLivre() {
-
+		livre.invariantLivre();
 	}
 
+	@Test
+	public void testInvariantLivreFail() throws OperationImpossible, InvariantBroken {
+		livre.metEmpruntable();
+		livre.invariantLivre();
+	}
 }

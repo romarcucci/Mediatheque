@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import mediatheque.document.Document;
 import mediatheque.Genre;
 import mediatheque.Localisation;
 import mediatheque.OperationImpossible;
@@ -22,9 +21,19 @@ public class DocumentTest {
         Genre g = new Genre("Genre");
         d = new DocumentNonAbstract("01", l, "Titre", "Auteur", "2017", g);
 	}
+	
 	@Test
-	public void testDocument() {
-		fail("Not yet implemented");
+	public void testConstructeur() {
+		assertNotNull(d);
+		assertTrue(d.getCode().equals("01"));
+		assertEquals(new Localisation("Salle", "Rayon"), d.getLocalisation());
+		assertTrue(d.getTitre().equals("Titre"));
+		assertTrue(d.getAuteur().equals("Auteur"));
+		assertTrue(d.getAnnee().equals("2017"));
+		assertEquals(new Genre("Genre"), d.getGenre());
+		assertEquals(false,d.estEmpruntable());
+		assertEquals(false,d.estEmprunte());
+		assertEquals(0,d.getNbEmprunts());
 	}
 	
 	@Test
@@ -63,6 +72,18 @@ public class DocumentTest {
 	}
 	
 	@Test
+	public void testRestituer() throws InvariantBroken, OperationImpossible {
+		d.metEmpruntable();
+		d.emprunter();
+		d.restituer();	
+	}
+	
+	@Test
+	public void testInvariant(){
+		d.invariant();
+	}
+	
+	@Test
 	public void testEmpruntableFail() throws InvariantBroken, OperationImpossible {
 		assertEquals(false,d.estEmpruntable());
 		assertEquals(false,d.estEmprunte());
@@ -76,18 +97,21 @@ public class DocumentTest {
 	
 	@Test
 	public void testConsultableFail() throws InvariantBroken, OperationImpossible {
-		//already consultable 
+		//already consultable (should set metEmpruntable then metConsultable)
 		d.metConsultable();
 	}
 	
 	@Test
-	public void testRestituer() {
-		fail("Not yet implemented");
+	public void testRestituerFail() throws InvariantBroken, OperationImpossible {
+		d.metEmpruntable();
+		//doit être emprunté avant d'être restitué
+		d.restituer();	
 	}
-
+	
 	@Test
-	public void testInvariant() {
-		fail("Not yet implemented");
+	public void testInvariantFail() throws OperationImpossible, InvariantBroken {
+		d.metEmpruntable();
+		d.invariant();
 	}
 
 }

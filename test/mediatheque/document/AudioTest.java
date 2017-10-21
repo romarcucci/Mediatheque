@@ -1,6 +1,6 @@
 package mediatheque.document;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,30 +12,36 @@ import util.InvariantBroken;
 
 public class AudioTest {
 
-	Audio audio = null;
+	Audio a = null;
 
 	@Before
-	public void setup() throws OperationImpossible, InvariantBroken {
-		Localisation l = new Localisation("salle", "rayon");
-        Genre g = new Genre("genre");
-
-        audio = new Audio("01", l, "titre", "auteur", "2017", g, "classif");
+	public void setUp() throws OperationImpossible, InvariantBroken {
+		Localisation l = new Localisation("Salle", "Rayon");
+        Genre g = new Genre("Genre");
+        a = new Audio("01", l, "Titre", "Auteur", "2017", g, "Classification");
+        //a.metEmpruntable();
 	}
 
 	@Test
 	public void testConstructeur() {
-		assertTrue(audio != null);
+		assertNotNull(a);
+		assertTrue(a.getTitre().equals("Titre"));
+		assertTrue(a.getAuteur().equals("Auteur"));
+		assertTrue(a.getAnnee().equals("2017"));
+		assertTrue(a.getClassification().equals("Classification")); 	
+		assertEquals(false,a.estEmpruntable());
 	}
 
 	@Test(expected = OperationImpossible.class)
 	public void testConstructeurFail() throws OperationImpossible, InvariantBroken {
-        audio = new Audio("01", new Localisation("salle", "rayon"), "titre", "auteur", "2017", new Genre("genre"), null);
+        a = new Audio("01", new Localisation("salle", "rayon"), "titre", "auteur", "2017", new Genre("genre"), null);
 	}
 
 	@Test
 	public void testEmprunter() throws InvariantBroken, OperationImpossible {
-		int nb = audio.getNbEmprunts();
-		assertTrue(audio.emprunter());
-		assertTrue(nb + 1 == audio.getNbEmprunts());
+		int nb = a.getNbEmprunts();
+		assertTrue(a.emprunter());
+		assertTrue(nb + 1 == a.getNbEmprunts());
+		
 	}
 }

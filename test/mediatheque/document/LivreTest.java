@@ -30,12 +30,12 @@ public class LivreTest {
 		assertTrue(livre.getAuteur().equals("Auteur"));
 		assertTrue(livre.getAnnee().equals("2017"));
 		assertEquals(new Genre("Genre"), livre.getGenre());
-		
+		assertEquals(true, livre.invariantLivre());
 	}
 
 	@Test
-	public void testConstructeurFail() {
-		
+	public void testConstructeurFail() throws OperationImpossible, InvariantBroken {
+		livre = new Livre("01", new Localisation("Salle", "Rayon"), "Titre", "Auteur", "2017", new Genre("Genre"), -4);
 	}
 
 	@Test

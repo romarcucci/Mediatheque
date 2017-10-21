@@ -13,6 +13,7 @@ import util.InvariantBroken;
 public class AudioTest {
 
 	Audio a = null;
+	int nb_before = 0, nb_after = 0;
 
 	@Before
 	public void setUp() throws OperationImpossible, InvariantBroken {
@@ -30,7 +31,10 @@ public class AudioTest {
 		assertTrue(a.getAuteur().equals("Auteur"));
 		assertTrue(a.getAnnee().equals("2017"));
 		assertEquals(new Genre("Genre"), a.getGenre());
-		assertTrue(a.getClassification().equals("Classification")); 	
+		assertTrue(a.getClassification().equals("Classification")); 
+		assertEquals(false,a.estEmpruntable());
+		assertEquals(false,a.estEmprunte());
+		assertEquals(0,a.getNbEmprunts());
 	}
 
 	@Test(expected = OperationImpossible.class)
@@ -42,16 +46,55 @@ public class AudioTest {
 	public void testEmpruntable() throws InvariantBroken, OperationImpossible {
 		a.metEmpruntable();
 		assertEquals(true,a.estEmpruntable());
-		//assertEquals(ans,val);
 	}
 	
 	@Test
-	public void testNonEmpruntableFail() throws InvariantBroken, OperationImpossible {
-
-		//assertEquals(true,a.metConsultable());
+	public void testEmprunte() throws InvariantBroken, OperationImpossible {
+		a.metEmpruntable();
+		a.emprunter();
+		assertEquals(true,a.estEmpruntable());
+		assertEquals(true,a.estEmprunte());
+	}
+	
+	@Test
+	public void testConsultable() throws InvariantBroken, OperationImpossible {
+		a.metEmpruntable();
+		a.metConsultable();
+		assertEquals(false,a.estEmpruntable());
+	}
+	
+	@Test
+	public void testIncrementEmprunte() throws InvariantBroken, OperationImpossible {
+		//check it's empruntable
+		a.metEmpruntable();
+		assertEquals(true,a.estEmpruntable());
+		nb_before = a.getNbEmprunts();
+		//check it's emprunted
+		a.emprunter();
+		nb_after = a.getNbEmprunts();
+		assertEquals(true,a.estEmprunte());
+		//check incrementation
+		assertEquals(nb_after,nb_before+1);
+	}
+	
+	@Test
+	public void testEmpruntableFail() throws InvariantBroken, OperationImpossible {
 		assertEquals(false,a.estEmpruntable());
 		assertEquals(false,a.estEmprunte());
 	}
+	
+	@Test
+	public void testEmprunteFail() throws InvariantBroken, OperationImpossible {
+		//must be Empruntable first before we can emprunt it
+		a.emprunter();
+	}
+	
+	@Test
+	public void testConsultableFail() throws InvariantBroken, OperationImpossible {
+		//already consultable 
+		a.metConsultable();
+	}
+
 	
 
 	

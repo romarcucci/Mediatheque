@@ -1,73 +1,52 @@
 package mediatheque.document;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import mediatheque.Genre;
 import mediatheque.Localisation;
-<<<<<<< HEAD
 
-public class LivreTest {
-
-	Livre livre = null;
-
-	@Before
-	public void setUp() throws Exception {
-		Localisation l = new Localisation("salle", "rayon");
-		Genre g = new Genre("genre");
-
-		livre = new Livre("01", l, "titre", "auteur", "2017", g, 200);
-	}
-
-	@Test
-	public void testConstructeur() {
-
-	}
-
-	@Test
-	public void testConstructeurFail() {
-
-=======
 import mediatheque.OperationImpossible;
 import util.InvariantBroken;
 
 public class LivreTest {
 	
-	Livre l = null;
+	Livre livre = null;
 	
-	@Test
-	public void constructeurTest() throws OperationImpossible, InvariantBroken {
-		l = new Livre("ALY252018TOP", new Localisation("Est", " Monde"), "La vie rêvée des Plantes", "Seung-U Lee", "2009", new Genre("Drame"), 0);
-		assertTrue(l.getAnnee().equals("2009"));
-		assertTrue(l.getAuteur().equals("Seung-U Lee"));
->>>>>>> 732b0d092a8b5cd30db9dff8384f04603b97ffd4
+	@Before
+	public void setUp() throws Exception {
+		Localisation l = new Localisation("Salle", "Rayon");
+		Genre g = new Genre("Genre");
+		livre = new Livre("01", l, "Titre", "Auteur", "2017", g, 200);
 	}
 
 	@Test
-	public void testEmprunter() {
-
+	public void testConstructeur() {
+		assertNotNull(livre);
+		assertTrue(livre.getCode().equals("01"));
+		assertEquals(new Localisation("Salle","Rayon"), livre.getLocalisation());
+		assertTrue(livre.getTitre().equals("Titre"));
+		assertTrue(livre.getAuteur().equals("Auteur"));
+		assertTrue(livre.getAnnee().equals("2017"));
+		assertEquals(new Genre("Genre"), livre.getGenre());
+		assertEquals(true, livre.invariantLivre());
 	}
 
 	@Test
-	public void testLivre() {
-
-	}
-
-	@Test
-	public void testDureeEmprunt() {
-
-	}
-
-	@Test
-	public void testTarifEmprunt() {
-
+	public void testConstructeurFail() throws OperationImpossible, InvariantBroken {
+		livre = new Livre("01", new Localisation("Salle", "Rayon"), "Titre", "Auteur", "2017", new Genre("Genre"), -4);
 	}
 
 	@Test
 	public void testInvariantLivre() {
-
+		livre.invariantLivre();
 	}
 
+	@Test
+	public void testInvariantLivreFail() throws OperationImpossible, InvariantBroken {
+		livre.metEmpruntable();
+		livre.invariantLivre();
+	}
 }

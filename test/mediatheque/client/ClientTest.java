@@ -21,7 +21,7 @@ public class ClientTest {
 	public void setup() throws OperationImpossible {
 		cc = new CategorieClient("Categorie", 0, 0, 0, 0, false);
 		c = new Client("Nom", "Prenom", "Adresse", cc);
-		//c.getCategorie().modifierMax(0);
+		c.getCategorie().modifierMax(5);
 	}
 
 	@Test
@@ -63,19 +63,18 @@ public class ClientTest {
 	}
 
 	@Test
-	public void initAttrTest(){ // --> private ???
+	public void initAttrTest(){ // --> private not be tested
 		
 	}
 
 	@Test
 	public void pasEmpruntsEnCours() {
-		assertEquals(false, c.aDesEmpruntsEnCours());
+		assertEquals(false, c.aDesEmpruntsEnCours());	
 	}
 
 	@Test
 	public void empruntsEnCours() throws OperationImpossible {
 		assertEquals(false,c.aDesEmpruntsEnCours());
-		c.getCategorie().modifierMax(1);
 		c.emprunter();
 		assertTrue(c.aDesEmpruntsEnCours());
 	}
@@ -88,7 +87,17 @@ public class ClientTest {
 	}
 
 	@Test
-	public void nePeutEmprunter() throws OperationImpossible {
+	public void nePeutEmprunter1() throws OperationImpossible { //a atteint son max
+		c.getCategorie().modifierMax(1);
+		c.emprunter();
+		assertEquals(false,c.peutEmprunter());
+	}
+	
+	@Test
+	public void nePeutEmprunter2() throws OperationImpossible { //retard 
+		c.getCategorie().modifierMax(1);
+		c.emprunter();
+		assertEquals(c.getNbEmpruntsEnRetard(),c.getNbEmpruntsEnCours());
 		assertEquals(false,c.peutEmprunter());
 	}
 
@@ -119,12 +128,12 @@ public class ClientTest {
 	// }
 
 	@Test
-	public void marquer() throws OperationImpossible {
+	public void marquer() throws OperationImpossible { //we changed to return value of getNbEmpruntsEnRetard
 		c.getCategorie().modifierMax(10);
-		int nbRetard = c.getNbEmpruntsEnRetard();
+		int nbRetard = c.getNbEmpruntsEnRetard(); 
 		c.emprunter();
 		c.marquer();
-		assertEquals(nbRetard + 1,c.getNbEmpruntsEnRetard());
+		assertEquals(nbRetard+1,c.getNbEmpruntsEnRetard());
 	}
 
 	@Test(expected = OperationImpossible.class)
@@ -174,7 +183,7 @@ public class ClientTest {
 		c.getCategorie().modifierMax(10);
 		c.emprunter();
 		c.restituer(false);
-		assertTrue(c.getNbEmpruntsEnCours() == 0);
+		assertEquals(0,c.getNbEmpruntsEnCours());
 	}
 
 	// @Test
@@ -219,6 +228,6 @@ public class ClientTest {
 
 	@Test
 	public void sommeDue() throws OperationImpossible {
-		assertTrue(c.sommeDue(10) == (10 * cc.getCoefTarif()));
+		assertEquals(10 * cc.getCoefTarif(),c.sommeDue(10),0.001);
 	}
 }

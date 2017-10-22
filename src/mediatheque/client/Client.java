@@ -212,7 +212,7 @@ public class Client implements Serializable {
 	 * @return nombre d'emprunts en retard
 	 */
 	public int getNbEmpruntsEnRetard() { //ERROR HERE
-		return 1;
+		return nbEmpruntsDepasses; //should return NbEmpruntsDepasses
 	}
 
 	/**

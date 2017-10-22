@@ -315,7 +315,7 @@ public final class Mediatheque implements Serializable {
 	public CategorieClient chercherCatClient(String catName) {
 		CategorieClient searched = new CategorieClient(catName);
 		int index = lesCatsClient.indexOf(searched);
-		if (index == 0) {
+		if (index >= 0) {
 			return lesCatsClient.elementAt(index);
 		} else {
 			return null;
@@ -539,7 +539,7 @@ public final class Mediatheque implements Serializable {
 		if (doc == null) {
 			throw new OperationImpossible("MetEmpruntable code inexistant:" + code);
 		}
-		doc.metConsultable();
+		doc.metEmpruntable();
 	}
 
 	/**

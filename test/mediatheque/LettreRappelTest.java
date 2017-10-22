@@ -17,9 +17,9 @@ public class LettreRappelTest {
 
 	@Before
 	public void setup() throws OperationImpossible, InvariantBroken {
-		Mediatheque m = new Mediatheque("mediatheque");
-		Client c = new Client("marcucci", "romain");
-		Localisation l = new Localisation("A", "05");
+		Mediatheque m = new Mediatheque("Mediatheque");
+		Client c = new Client("Nom", "Prenom");
+		Localisation l = new Localisation("Salle", "Rayon");
 		Genre g = new Genre("genre");
 		Document d = new Audio("code", l, "audio_doc", "auteur", "2017", g, "classification");
 		FicheEmprunt fiche = new FicheEmprunt(m, c, d);

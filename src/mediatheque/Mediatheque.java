@@ -428,6 +428,8 @@ public final class Mediatheque implements Serializable {
 			if (c.getCodeReducUtilise() != codeReducUsed) {
 				c.modifierCodeReducActif(codeReducUsed);
 			}
+			supprimerCatClient(co.getNom());
+			ajouterCatClient(name, max, cot, coefDuree, coefTarif, codeReducUsed);
 		}
 		return c;
 	}

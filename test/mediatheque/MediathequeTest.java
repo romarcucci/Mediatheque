@@ -126,48 +126,48 @@ public class MediathequeTest {
 
 	@Test
 	public void testChercherCatClient() throws OperationImpossible {
-		media.ajouterCatClient("romain", 0, 0, 0, 0, true);
-		assertEquals(new CategorieClient("romain", 0, 0, 0, 0, true), media.chercherCatClient("romain"));
+		media.ajouterCatClient("categorie", 0, 0, 0, 0, true);
+		assertEquals(new CategorieClient("categorie", 0, 0, 0, 0, true), media.chercherCatClient("categorie"));
 	}
 
 	@Test
 	public void testChercherCatClientFail() {
-		assertNull(media.chercherCatClient("romain"));
+		assertNull(media.chercherCatClient("categorie"));
 	}
 
 	@Test
 	public void testSupprimerCatClient() throws OperationImpossible {
-		media.ajouterCatClient("romain", 0, 0, 0, 0, true);
-		media.supprimerCatClient("romain");
+		media.ajouterCatClient("categorie", 0, 0, 0, 0, true);
+		media.supprimerCatClient("categorie");
 	}
 
 	@Test(expected = OperationImpossible.class)
 	public void testSupprimerCatClientFail() throws OperationImpossible {
-		media.supprimerCatClient("romain");
+		media.supprimerCatClient("categorie");
 	}
 
 	@Test
 	public void testAjouterCatClient() throws OperationImpossible {
-		media.ajouterCatClient("romain", 0, 0, 0, 0, true);
-		assertEquals(new CategorieClient("romain"), media.chercherCatClient("romain"));
+		media.ajouterCatClient("categorie", 0, 0, 0, 0, true);
+		assertEquals(new CategorieClient("categorie"), media.chercherCatClient("categorie"));
 	}
 
 	@Test(expected = OperationImpossible.class)
 	public void testAjouterCatClientFail() throws OperationImpossible {
-		media.ajouterCatClient("romain", 0, 0, 0, 0, true);
-		media.ajouterCatClient("romain", 0, 0, 0, 0, true);
+		media.ajouterCatClient("categorie", 0, 0, 0, 0, true);
+		media.ajouterCatClient("categorie", 0, 0, 0, 0, true);
 	}
 
 	@Test
 	public void testModifierCatClient() throws OperationImpossible {
-		media.ajouterCatClient("romain", 0, 0, 0, 0, true);
-		media.modifierCatClient(new CategorieClient("romain", 0, 0, 0, 0, true), "romain", 0, 0, 0, 0, true);
-		assertNotNull(media.chercherCatClient("romain"));
+		media.ajouterCatClient("categorie", 0, 0, 0, 0, true);
+		media.modifierCatClient(new CategorieClient("categorie", 0, 0, 0, 0, true), "categorie", 0, 0, 0, 0, true);
+		assertNotNull(media.chercherCatClient("categorie"));
 	}
 
 	@Test(expected = OperationImpossible.class)
 	public void testModifierCatClientFail() throws OperationImpossible {
-		media.modifierCatClient(new CategorieClient("romain", 0, 0, 0, 0, true), "romain", 0, 0, 0, 0, true);
+		media.modifierCatClient(new CategorieClient("categorie", 0, 0, 0, 0, true), "romain", 0, 0, 0, 0, true);
 	}
 
 	@Test

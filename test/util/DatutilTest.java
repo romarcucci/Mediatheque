@@ -21,7 +21,7 @@ public class DatutilTest {
 	@Before
 	public void setUp() throws Exception {
 		d = Datutil.dateDuJour();
-		df = new SimpleDateFormat("MM/dd/yyyy");
+		df = new SimpleDateFormat("dd-MM-yyyy");
 		today = Calendar.getInstance().getTime();
 	}
 
@@ -46,5 +46,12 @@ public class DatutilTest {
 		String tomorrow = df.format(d);
 	
 		assertEquals(tomorrow,convert_next_date); 
+	}
+	
+	@Test 
+	public void dateToSqlValuesTest() {
+		convert_date = df.format(du.dateDuJour()); //today
+		String date_test = du.dateToSqlValues(d);
+		assertEquals(convert_date,date_test);
 	}
 }

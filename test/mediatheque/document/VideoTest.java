@@ -24,7 +24,7 @@ public class VideoTest {
 	}
 
 	@Test
-	public void testConstructeur() throws OperationImpossible, InvariantBroken {
+	public void constructeurTest() throws OperationImpossible, InvariantBroken {
 		assertNotNull(v);
 		assertTrue(v.getCode().equals("01"));
 		assertEquals(new Localisation("Salle", "Rayon"), v.getLocalisation());
@@ -40,31 +40,43 @@ public class VideoTest {
 	}
 	
 	@Test
-	public void testConstructeurFail() throws OperationImpossible, InvariantBroken {
+	public void constructeurTestFail() throws OperationImpossible, InvariantBroken {
 		v = new Video("01", new Localisation("Salle", "Rayon") , "Titre", "Auteur", "2017", new Genre("Genre"), 10, null);
 	}
 
 	@Test
-	public void testInvariantVideo() {
+	public void invariantVideoTest() {
 		v.invariantVideo();
 	}
 	
+	/* No need because we already test it in DocumentTest (through DocumentNonAbstract class)
 	@Test
-	public void testEmprunter() throws InvariantBroken, OperationImpossible {
+	public void emprunterTest() throws InvariantBroken, OperationImpossible {
 		v.metEmpruntable();
 		v.emprunter();
 	}
 	
 	@Test
-	public void testEmprunterFail() throws InvariantBroken, OperationImpossible {
+	public void emprunterTestFail() throws InvariantBroken, OperationImpossible {
 		v = new Video("01", new Localisation("Salle", "Rayon") , "Titre", "Auteur", "2017", new Genre("Genre"), 10, null);
 		v.metEmpruntable();
 		v.emprunter();
 	}
+	*/
 	
 	@Test
 	public void testInvariantVideoFail() throws OperationImpossible, InvariantBroken {
 		v = new Video("01", new Localisation("Salle", "Rayon") , "Titre", "Auteur", "2017", new Genre("Genre"), 0, "Mention");
 		v.invariantVideo();
+	}
+	
+	@Test
+	public void dureeEmpruntTest() {
+		assertEquals(2*7, v.dureeEmprunt());
+	}
+	
+	@Test
+	public void tarifEmpruntTest() {
+		assertEquals(1.5, v.tarifEmprunt(), 0.001);
 	}
 }

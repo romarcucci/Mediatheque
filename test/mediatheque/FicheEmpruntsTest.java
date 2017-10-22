@@ -29,7 +29,6 @@ public class FicheEmpruntsTest {
 		m.saveToFile();
 		d.metEmpruntable();
 		f = new FicheEmprunt(m,c,d);
-		
 	}
 
 	@Test

@@ -8,9 +8,9 @@ public class HashClientTest {
 
 	@Test
 	public void constructor() {
-		HashClient hc = new HashClient("marcucci", "romain");
-		assertTrue(hc.getPrenom().equals("romain"));
-		assertTrue(hc.getNom().equals("marcucci"));
+		HashClient hc = new HashClient("Nom", "Prenom");
+		assertTrue(hc.getPrenom().equals("Prenom"));
+		assertTrue(hc.getNom().equals("Nom"));
 	}
 
 }

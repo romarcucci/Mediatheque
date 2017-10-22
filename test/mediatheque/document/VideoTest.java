@@ -79,4 +79,14 @@ public class VideoTest {
 	public void tarifEmpruntTest() {
 		assertEquals(1.5, v.tarifEmprunt(), 0.001);
 	}
+	
+	@SuppressWarnings("static-access")
+	@Test
+	public void incrementationEmprunterTestFail() throws InvariantBroken, OperationImpossible {
+		int stat_avant = v.getStat();
+		v.metEmpruntable();
+		v.emprunter();
+		int stat_apres = v.getStat();
+		assertEquals(stat_apres,stat_avant+1);
+	}
 }

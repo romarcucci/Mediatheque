@@ -50,4 +50,14 @@ public class AudioTest {
 	public void tarifEmpruntTest() {
 		assertEquals(1.0, a.tarifEmprunt(), 0.001);
 	}
+	
+	@SuppressWarnings("static-access")
+	@Test
+	public void incrementationEmprunterTest() throws InvariantBroken, OperationImpossible {
+		int stat_avant = a.getStat();
+		a.metEmpruntable();
+		a.emprunter();
+		int stat_apres = a.getStat();
+		assertEquals(stat_apres,stat_avant+1);
+	}
 }

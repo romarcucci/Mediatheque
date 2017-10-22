@@ -60,4 +60,14 @@ public class LivreTest {
 		assertEquals(0.5, livre.tarifEmprunt(), 0.001);
 	}
 	
+	@SuppressWarnings("static-access")
+	@Test
+	public void incrementationEmprunterTestFail() throws InvariantBroken, OperationImpossible {
+		int stat_avant = livre.getStat();
+		livre.metEmpruntable();
+		livre.emprunter();
+		int stat_apres = livre.getStat();
+		assertEquals(stat_apres,stat_avant+1);
+	}
+	
 }

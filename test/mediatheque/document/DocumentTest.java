@@ -102,8 +102,17 @@ public class DocumentTest {
 	}
 	
 	@Test
-	public void invariantTest(){
-		d.invariant();
+	public void invariantTest1() throws OperationImpossible, InvariantBroken{
+		d.metEmpruntable();
+		assertTrue(d.estEmpruntable());
+		assertTrue(d.invariant());
+	}
+	
+	@Test
+	public void invariantTest2() throws OperationImpossible, InvariantBroken {
+		d.metEmpruntable();
+		d.emprunter();
+		assertTrue(d.invariant());
 	}
 	
 	@Test
@@ -142,7 +151,8 @@ public class DocumentTest {
 	
 	@Test
 	public void invariantTestFail() throws OperationImpossible, InvariantBroken {
-		d.metEmpruntable();
-		d.invariant();
+		d.emprunter();
+		assertFalse(d.invariant());
 	}
+	
 }

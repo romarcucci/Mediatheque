@@ -46,7 +46,7 @@ public class LivreTest {
 
 	@Test
 	public void InvariantLivreTestFail() throws OperationImpossible, InvariantBroken {
-		livre.metEmpruntable();
+		livre = new Livre("01", new Localisation("Salle", "Rayon"), "Titre", "Auteur", "2017", new Genre("Genre"), -4);
 		livre.invariantLivre();
 	}
 	

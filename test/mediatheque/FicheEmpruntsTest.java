@@ -5,9 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import mediatheque.client.CategorieClient;
 import mediatheque.client.Client;
 import mediatheque.document.Audio;
 import mediatheque.document.Document;
+import mediatheque.document.Livre;
 import util.Datutil;
 import util.InvariantBroken;
 
@@ -17,57 +19,54 @@ public class FicheEmpruntsTest {
 
 	@Before
 	public void setUp() throws OperationImpossible, InvariantBroken {
+		
 		Mediatheque m = new Mediatheque("Mediatheque");
+		CategorieClient cc = new CategorieClient("Normal Rate", 5, 0, 1, 1, false);
+		Client c = new Client("Nom", "Prenom","Adresse", cc);
+		Document d = new Livre("01", new Localisation("Salle", "Rayon"), "Titre", "Auteur", "2017", new Genre("Genre"), 200);
 		m.saveToFile();
-		Client c = new Client("Nom", "Prenom");
-		Localisation l = new Localisation("Salle", "Rayon");
-		Genre g = new Genre("Genre");
-		Document d = new Audio("01", l, "Titre", "Auteur", "2017", g, "Classification");
 		d.metEmpruntable();
 		d.emprunter();
-		assertEquals(false,c.peutEmprunter());
-		c.emprunter();
-		System.out.println(c.getNbEmpruntsEnCours());
-		f = new FicheEmprunt(m, c, d);		
+		f = new FicheEmprunt(m,c,d);
 	}
 
 	@Test
-	public void testConstructeur() {
+	public void constructeurTest() {
 		assertTrue(f.getDateEmprunt() == Datutil.dateDuJour());
 	}
 
 	@Test
-	public void testVerifier() {
+	public void verifierTest() {
 
 	}
 
 	@Test
-	public void testPremierRappel() {
+	public void premierRappelTest() {
 
 	}
 
 	@Test
-	public void testRelancer() {
+	public void relancerTest() {
 
 	}
 
 	@Test
-	public void testModifierClient() {
+	public void modifierClientTest() {
 
 	}
 
 	@Test
-	public void testCorrespond() {
+	public void correspondTest() {
 
 	}
 
 	@Test
-	public void testRestituer() {
+	public void restituerTest() {
 
 	}
 
 	@Test
-	public void testChangementCategorie() {
+	public void changementCategorieTest() {
 
 	}
 }

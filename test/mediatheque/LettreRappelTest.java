@@ -1,13 +1,12 @@
 package mediatheque;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import mediatheque.client.CategorieClient;
 import mediatheque.client.Client;
-import mediatheque.document.Audio;
 import mediatheque.document.Document;
 import mediatheque.document.Livre;
 import util.Datutil;
@@ -31,13 +30,13 @@ public class LettreRappelTest {
 	}
 
 	@Test
-	public void testConstructeur() {
-		assertTrue(lettre != null);
+	public void constructeurTest() {
+		assertNotNull(lettre);
 	}
 
 	@Test
-	public void testRelancer() {
+	public void relancerTest() {
 		lettre.relancer();
-		assertTrue(lettre.getDateRappel() == Datutil.dateDuJour());
+		assertEquals(Datutil.dateDuJour(),lettre.getDateRappel());
 	}
 }

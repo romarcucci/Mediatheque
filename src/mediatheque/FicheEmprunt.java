@@ -61,7 +61,7 @@ public class FicheEmprunt implements Serializable {
                 client = c;
                 document = d;
                 dateEmprunt = Datutil.dateDuJour();
-                int duree = document.dureeEmprunt();
+                int duree = document.dureeEmprunt();        
                 dateLimite = client.dateRetour(dateEmprunt, duree);
                 depasse = false;
                 document.emprunter();

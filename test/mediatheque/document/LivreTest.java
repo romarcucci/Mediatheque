@@ -23,7 +23,7 @@ public class LivreTest {
 	}
 
 	@Test
-	public void testConstructeur() {
+	public void constructeurTest() {
 		assertNotNull(livre);
 		assertTrue(livre.getCode().equals("01"));
 		assertEquals(new Localisation("Salle","Rayon"), livre.getLocalisation());
@@ -35,18 +35,29 @@ public class LivreTest {
 	}
 
 	@Test
-	public void testConstructeurFail() throws OperationImpossible, InvariantBroken {
+	public void ConstructeurTestFail() throws OperationImpossible, InvariantBroken {
 		livre = new Livre("01", new Localisation("Salle", "Rayon"), "Titre", "Auteur", "2017", new Genre("Genre"), -4);
 	}
-
+	
 	@Test
-	public void testInvariantLivre() {
+	public void InvariantLivreTest() {
 		livre.invariantLivre();
 	}
 
 	@Test
-	public void testInvariantLivreFail() throws OperationImpossible, InvariantBroken {
-		livre.metEmpruntable();
+	public void InvariantLivreTestFail() throws OperationImpossible, InvariantBroken {
+		livre = new Livre("01", new Localisation("Salle", "Rayon"), "Titre", "Auteur", "2017", new Genre("Genre"), -4);
 		livre.invariantLivre();
 	}
+	
+	@Test
+	public void dureeEmpruntTest() {
+		assertEquals(6*7, livre.dureeEmprunt());
+	}
+	
+	@Test
+	public void tarifEmpruntTest() {
+		assertEquals(0.5, livre.tarifEmprunt(), 0.001);
+	}
+	
 }

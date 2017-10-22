@@ -1,67 +1,72 @@
 package mediatheque;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import mediatheque.client.CategorieClient;
 import mediatheque.client.Client;
 import mediatheque.document.Audio;
 import mediatheque.document.Document;
+import mediatheque.document.Livre;
 import util.Datutil;
 import util.InvariantBroken;
 
 public class FicheEmpruntsTest {
 
-	FicheEmprunt fiche = null;
+	FicheEmprunt f = null;
 
 	@Before
-	public void setup() throws OperationImpossible, InvariantBroken {
-		Mediatheque m = new Mediatheque("mediatheque");
-		Client c = new Client("marcucci", "romain");
-		Localisation l = new Localisation("A", "05");
-		Genre g = new Genre("genre");
-		Document d = new Audio("code", l, "audio_doc", "auteur", "2017", g, "classification");
-		fiche = new FicheEmprunt(m, c, d);
+	public void setUp() throws OperationImpossible, InvariantBroken {
+		
+		Mediatheque m = new Mediatheque("Mediatheque");
+		CategorieClient cc = new CategorieClient("Normal Rate", 5, 0, 1, 1, false);
+		Client c = new Client("Nom", "Prenom","Adresse", cc);
+		Document d = new Livre("01", new Localisation("Salle", "Rayon"), "Titre", "Auteur", "2017", new Genre("Genre"), 200);
+		m.saveToFile();
+		d.metEmpruntable();
+		d.emprunter();
+		f = new FicheEmprunt(m,c,d);
 	}
 
 	@Test
-	public void testConstructeur() {
-		assertTrue(fiche.getDateEmprunt() == Datutil.dateDuJour());
+	public void constructeurTest() {
+		assertTrue(f.getDateEmprunt() == Datutil.dateDuJour());
 	}
 
 	@Test
-	public void testVerifier() {
-
-	}
-
-	@Test
-	public void testPremierRappel() {
-
-	}
-
-	@Test
-	public void testRelancer() {
+	public void verifierTest() {
 
 	}
 
 	@Test
-	public void testModifierClient() {
+	public void premierRappelTest() {
 
 	}
 
 	@Test
-	public void testCorrespond() {
+	public void relancerTest() {
 
 	}
 
 	@Test
-	public void testRestituer() {
+	public void modifierClientTest() {
 
 	}
 
 	@Test
-	public void testChangementCategorie() {
+	public void correspondTest() {
+
+	}
+
+	@Test
+	public void restituerTest() {
+
+	}
+
+	@Test
+	public void changementCategorieTest() {
 
 	}
 }

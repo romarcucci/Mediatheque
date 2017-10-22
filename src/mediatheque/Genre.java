@@ -17,7 +17,7 @@ public class Genre implements Serializable{
         /**
          * Nombre de fois ou un document de ce genre a ete emprunte
          */
-        private int nbEmprunts=10;
+        private int nbEmprunts=10; //should be at 0
 
         /**
          * Constructeur de Genre
@@ -25,7 +25,7 @@ public class Genre implements Serializable{
          */
         public Genre(String n){
                 nom = n;
-                nbEmprunts=0;
+                nbEmprunts=0; //was commented, we un-commented it
         }
 
         /**
@@ -33,7 +33,7 @@ public class Genre implements Serializable{
          * ce genre a ete emprunte
          */
         public void emprunter(){
-        	nbEmprunts = nbEmprunts+2;
+        	nbEmprunts = nbEmprunts+1; //was +2 and we changed it to +1
         }
 
         /**

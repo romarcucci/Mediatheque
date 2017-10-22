@@ -12,7 +12,7 @@ import util.InvariantBroken;
 
 public class DocumentTest {
 	
-	DocumentNonAbstract d = null;
+	DocumentNonAbstract d = null; //create this to test Document (instead of testing the inherited methods in Document's children)
 	int nb_before = 0, nb_after = 0;
 	
 	@Before
@@ -23,7 +23,7 @@ public class DocumentTest {
 	}
 	
 	@Test
-	public void testConstructeur() {
+	public void constructeurTest1() {
 		assertNotNull(d);
 		assertTrue(d.getCode().equals("01"));
 		assertEquals(new Localisation("Salle", "Rayon"), d.getLocalisation());
@@ -37,13 +37,38 @@ public class DocumentTest {
 	}
 	
 	@Test
-	public void testEmpruntable() throws InvariantBroken, OperationImpossible {
+	public void constructeurTest2() throws OperationImpossible {
+		DocumentNonAbstract d = new DocumentNonAbstract("01", null, "Titre", "Auteur", "2017", new Genre("Genre"));
+	}
+	
+	@Test
+	public void metEmpruntableTest1() throws InvariantBroken, OperationImpossible {
 		d.metEmpruntable();
 		assertEquals(true,d.estEmpruntable());
 	}
 	
 	@Test
-	public void testEmprunte() throws InvariantBroken, OperationImpossible {
+	public void metEmpruntableTest2() throws InvariantBroken, OperationImpossible {
+		d.metEmpruntable(); 
+		d.metEmpruntable(); //document is already empruntable
+	}
+	
+	@Test
+	public void metConsultableTest1() throws InvariantBroken, OperationImpossible {
+		d.metEmpruntable();
+		d.metConsultable();
+		assertEquals(false,d.estEmpruntable());
+	}
+	
+	@Test
+	public void metConsultableTest2() throws InvariantBroken, OperationImpossible {
+		d.metEmpruntable();
+		d.emprunter();
+		d.metConsultable();
+	}
+	
+	@Test
+	public void emprunteTest() throws InvariantBroken, OperationImpossible {
 		d.metEmpruntable();
 		d.emprunter();
 		assertEquals(true,d.estEmpruntable());
@@ -51,14 +76,7 @@ public class DocumentTest {
 	}
 	
 	@Test
-	public void testConsultable() throws InvariantBroken, OperationImpossible {
-		d.metEmpruntable();
-		d.metConsultable();
-		assertEquals(false,d.estEmpruntable());
-	}
-	
-	@Test
-	public void testIncrementEmprunte() throws InvariantBroken, OperationImpossible {
+	public void incrementEmprunteTest() throws InvariantBroken, OperationImpossible {
 		//check it's empruntable
 		d.metEmpruntable();
 		assertEquals(true,d.estEmpruntable());
@@ -72,45 +90,69 @@ public class DocumentTest {
 	}
 	
 	@Test
-	public void testRestituer() throws InvariantBroken, OperationImpossible {
+	public void restituerTest1() throws InvariantBroken, OperationImpossible {
 		d.metEmpruntable();
 		d.emprunter();
 		d.restituer();	
 	}
 	
 	@Test
-	public void testInvariant(){
-		d.invariant();
+	public void restituerTest2() throws InvariantBroken, OperationImpossible {
+		d.restituer();	
 	}
 	
 	@Test
-	public void testEmpruntableFail() throws InvariantBroken, OperationImpossible {
+	public void invariantTest1() throws OperationImpossible, InvariantBroken{
+		d.metEmpruntable();
+		assertTrue(d.estEmpruntable());
+		assertTrue(d.invariant());
+	}
+	
+	@Test
+	public void invariantTest2() throws OperationImpossible, InvariantBroken {
+		d.metEmpruntable();
+		d.emprunter();
+		assertTrue(d.invariant());
+	}
+	
+	@Test
+	public void empruntableTestFail() throws InvariantBroken, OperationImpossible {
 		assertEquals(false,d.estEmpruntable());
 		assertEquals(false,d.estEmprunte());
 	}
 	
 	@Test
-	public void testEmprunteFail() throws InvariantBroken, OperationImpossible {
+	public void emprunteTestFail1() throws InvariantBroken, OperationImpossible {
 		//must be Empruntable first before we can emprunt it
 		d.emprunter();
 	}
 	
 	@Test
-	public void testConsultableFail() throws InvariantBroken, OperationImpossible {
+	public void emprunteTestFail2() throws InvariantBroken, OperationImpossible {
+		d.metEmpruntable();
+		d.emprunter();
+		assertEquals(true,d.estEmprunte());
+		//can't be borrowed twice
+		d.emprunter();
+	}
+	
+	@Test
+	public void consultableTestFail() throws InvariantBroken, OperationImpossible {
 		//already consultable (should set metEmpruntable then metConsultable)
 		d.metConsultable();
 	}
 	
 	@Test
-	public void testRestituerFail() throws InvariantBroken, OperationImpossible {
+	public void restituerTestFail() throws InvariantBroken, OperationImpossible {
 		d.metEmpruntable();
 		//doit être emprunté avant d'être restitué
 		d.restituer();	
 	}
 	
 	@Test
-	public void testInvariantFail() throws OperationImpossible, InvariantBroken {
-		d.metEmpruntable();
-		d.invariant();
+	public void invariantTestFail() throws OperationImpossible, InvariantBroken {
+		d.emprunter();
+		assertFalse(d.invariant());
 	}
+	
 }

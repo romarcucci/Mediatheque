@@ -9,26 +9,26 @@ public class GenreTest {
 	Genre g = null;
 
 	@Test
-	public void testConstructeur() {
-		g = new Genre("Horror");
-		assertTrue(g.getNom().equals("Horror"));
-		assertTrue(g.getNbEmprunts() == 0);
+	public void constructeurTest() {
+		g = new Genre("Nom");
+		assertTrue(g.getNom().equals("Nom"));
+		assertEquals(0,g.getNbEmprunts());
 	}
 
 	@Test
-	public void testEmprunter() {
-		g = new Genre("KPOP");
+	public void emprunterTest() {
+		g = new Genre("Nom");
 		int nb = g.getNbEmprunts();
 		g.emprunter();
-		assertTrue(g.getNbEmprunts() == nb + 1);
+		assertEquals(nb + 1,g.getNbEmprunts());
 	}
 
 	@Test
-	public void testModifier() {
-		g = new Genre("Animation");
-		assertTrue(g.getNom().equals("Animation"));
-		g.modifier("Anime");
-		assertTrue(g.getNom().equals("Anime"));
+	public void modifierTest() {
+		g = new Genre("Nom");
+		assertTrue(g.getNom().equals("Nom"));
+		g.modifier("Nouveau Nom");
+		assertTrue(g.getNom().equals("Nouveau Nom"));
 	}
 
 }

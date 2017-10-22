@@ -162,7 +162,7 @@ public final class Mediatheque implements Serializable {
 	 */
 	public void modifierGenre(String old, String neuf) throws OperationImpossible {
 		Genre g = chercherGenre(old);
-		if (g != null) {
+		if (g == null) {
 			throw new OperationImpossible("Genre \"" + old + "\" inexistant");
 		} else {
 			g.modifier(neuf);
@@ -270,7 +270,7 @@ public final class Mediatheque implements Serializable {
 	 * @throws OperationImpossible
 	 */
 	public void modifierLocalisation(Localisation loc, String s, String r) throws OperationImpossible {
-		Localisation inVector = chercherLocalisation(loc.getRayon(), loc.getRayon()); //erreur
+		Localisation inVector = chercherLocalisation(loc.getSalle(), loc.getRayon()); //erreur
 		if (inVector == null) {
 			throw new OperationImpossible("Modifier Localisation inexistante");
 		}

@@ -22,7 +22,7 @@ public class AudioTest {
 	}
 
 	@Test
-	public void testConstructeur() {
+	public void constructeurTest() {
 		assertNotNull(a);
 		assertTrue(a.getCode().equals("01"));
 		assertEquals(new Localisation("Salle", "Rayon"), a.getLocalisation());
@@ -37,7 +37,17 @@ public class AudioTest {
 	}
 
 	@Test(expected = OperationImpossible.class)
-	public void testConstructeurFail() throws OperationImpossible, InvariantBroken {
+	public void constructeurTestFail() throws OperationImpossible, InvariantBroken {
         a = new Audio("01", new Localisation("Salle", "Rayon"), "Titre", "Auteur", "2017", new Genre("Genre"), null);
+	}
+	
+	@Test
+	public void dureeEmpruntTest() {
+		assertEquals(4*7, a.dureeEmprunt());
+	}
+	
+	@Test
+	public void tarifEmpruntTest() {
+		assertEquals(1.0, a.tarifEmprunt(), 0.001);
 	}
 }

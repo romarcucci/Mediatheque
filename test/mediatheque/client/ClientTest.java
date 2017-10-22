@@ -150,7 +150,7 @@ public class ClientTest {
 	}
 
 	 @Test
-	 public void restituerFiche(){
+	 public void restituerFiche() throws OperationImpossible, InvariantBroken{
 	 CategorieClient cc = new CategorieClient("marcucci");
 	 Client c = new Client("marcucci", "romain", "paris", cc);
 	 int empruntsEffectues = c.getNbEmpruntsEffectues();
@@ -160,29 +160,15 @@ public class ClientTest {
 	 Genre g = new Genre("genre");
 	 Audio a = new Audio("code", l, "audio_doc", "auteur", "2017", g,
 	 "classification");
+	 m.saveToFile();
+	 a.metEmpruntable();
 	 FicheEmprunt fiche = new FicheEmprunt(m, c, a);
 	 c.emprunter(fiche);
+	 int empruntsEnCours = c.getNbEmpruntsEnCours();
 	 c.restituer(fiche);
-	 assertTrue(c.getNbEmpruntsEnCours() == empruntsEnCours - 1);
-	 }
-
-	 @Test(expected = OperationImpossible)
-	 public void restituerFicheFail(){
-	 CategorieClient cc = new CategorieClient("marcucci");
-	 Client c = new Client("marcucci", "romain", "paris", cc);
-	 int empruntsEffectues = c.getNbEmpruntsEffectues();
-	 c.getCategorie().modifierMax(10);
-	 Mediatheque m = new Mediatheque("mediatheque");
-	 Localisation l = new Localisation("A", "05");
-	 Genre g = new Genre("genre");
-	 Audio a = new Audio("code", l, "audio_doc", "auteur", "2017", g,
-	 "classification");
-	 FicheEmprunt fiche = new FicheEmprunt(m, c, a);
-	 c.emprunter(fiche);
-	 Mediatheque m1 = new Mediatheque("error");
-	 FicheEmprunt fiche = new FicheEmprunt(m1, c, a);
-	 c.restituer(fiche);
-	 assertTrue(c.getNbEmpruntsEnCours() == empruntsEnCours - 1);
+	 System.out.println(empruntsEnCours);
+	 System.out.println(c.getNbEmpruntsEnCours());
+	 assertEquals(empruntsEnCours - 1,c.getNbEmpruntsEnCours());
 	 }
 
 	@Test

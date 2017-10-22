@@ -1,19 +1,52 @@
 package mediatheque.client;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.lang.reflect.Method;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import mediatheque.OperationImpossible;
 
 public class ClientTest {
-
+	
+	CategorieClient categorieClient;
+	Client client1, client2, client3;
+	
+	@Before
+	public void setUp() throws Exception {
+       categorieClient = new CategorieClient("categorieClient", 10, 10, 10, 10, false);
+       client1 = new Client("nom1", "prenom1", "adresse1", categorieClient);
+	}
+	
+	@After
+	public void tearDown() throws Exception {
+		categorieClient = null;
+		client1 = null;
+		client2 = null;
+		client3 = null;
+	}
+	
+	@Test
+	public void nomConstructeurTest1() throws OperationImpossible {
+		assertNotNull(client1);
+		assertTrue(client1.getNom().equals("nom1"));
+		assertTrue(client1.getPrenom().equals("prenom1"));
+	}
+	
+	@Test
+	public void nomConstructeurTest2() throws OperationImpossible {
+		categorieClient.modifierCodeReducActif(true);
+		Client client2 = new Client("nom2", "prenom2", "adresse2", categorieClient, 10);
+		assertNotNull(client2);
+		assertTrue(client2.getNom().equals("nom2"));
+		assertTrue(client2.getPrenom().equals("prenom2"));
+	}
+	/*
 	CategorieClient cc = null;
 	Client c = null;
 
@@ -230,4 +263,5 @@ public class ClientTest {
 	public void sommeDue() throws OperationImpossible {
 		assertEquals(10 * cc.getCoefTarif(),c.sommeDue(10),0.001);
 	}
+	*/
 }

@@ -5,25 +5,29 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import mediatheque.client.CategorieClient;
 import mediatheque.client.Client;
 import mediatheque.document.Audio;
 import mediatheque.document.Document;
+import mediatheque.document.Livre;
 import util.Datutil;
 import util.InvariantBroken;
 
 public class LettreRappelTest {
 
 	LettreRappel lettre = null;
+	FicheEmprunt f = null;
 
 	@Before
-	public void setup() throws OperationImpossible, InvariantBroken {
+	public void setUp() throws OperationImpossible, InvariantBroken {
 		Mediatheque m = new Mediatheque("Mediatheque");
-		Client c = new Client("Nom", "Prenom");
-		Localisation l = new Localisation("Salle", "Rayon");
-		Genre g = new Genre("genre");
-		Document d = new Audio("code", l, "audio_doc", "auteur", "2017", g, "classification");
-		FicheEmprunt fiche = new FicheEmprunt(m, c, d);
-		lettre = new LettreRappel("audio", fiche);
+		CategorieClient cc = new CategorieClient("Normal Rate", 5, 0, 1, 1, false);
+		Client c = new Client("Nom", "Prenom","Adresse", cc);
+		Document d = new Livre("01", new Localisation("Salle", "Rayon"), "Titre", "Auteur", "2017", new Genre("Genre"), 200);
+		m.saveToFile();
+		d.metEmpruntable();
+		f = new FicheEmprunt(m,c,d);
+		lettre = new LettreRappel("Audio", f);
 	}
 
 	@Test

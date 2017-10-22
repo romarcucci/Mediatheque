@@ -410,23 +410,23 @@ public final class Mediatheque implements Serializable {
 		if (c == null) {
 			throw new OperationImpossible("Categorie client \"" + co.getNom() + "\" inexistante");
 		} else {
-			if (!co.getNom().equals(name)) {
-				co.modifierNom(name);
+			if (!c.getNom().equals(name)) {
+				c.modifierNom(name);
 			}
-			if (co.getNbEmpruntMax() != max) {
-				co.modifierMax(max);
+			if (c.getNbEmpruntMax() != max) {
+				c.modifierMax(max);
 			}
-			if (co.getCotisation() != cot) {
-				co.modifierCotisation(cot);
+			if (c.getCotisation() != cot) {
+				c.modifierCotisation(cot);
 			}
-			if (co.getCoefDuree() != coefDuree) {
-				co.modifierCoefDuree(coefDuree);
+			if (c.getCoefDuree() != coefDuree) {
+				c.modifierCoefDuree(coefDuree);
 			}
-			if (co.getCoefTarif() != coefTarif) {
-				co.modifierCoefTarif(coefTarif);
+			if (c.getCoefTarif() != coefTarif) {
+				c.modifierCoefTarif(coefTarif);
 			}
-			if (co.getCodeReducUtilise() != codeReducUsed) {
-				co.modifierCodeReducActif(codeReducUsed);
+			if (c.getCodeReducUtilise() != codeReducUsed) {
+				c.modifierCodeReducActif(codeReducUsed);
 			}
 		}
 		return c;
